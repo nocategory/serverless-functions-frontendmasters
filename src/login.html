@@ -22,3 +22,19 @@
   type="text/javascript"
   src="https://identity.netlify.com/v1/netlify-identity-widget.js"
 ></script>
+
+<div data-netlify-identity-button></div>
+
+<script>
+  function handleLogin(user) {
+    // not logged in
+    if (!user || !user.token) {
+      return
+    }
+
+    // logged in
+    window.location.pathname = '/admin/'
+  }
+  window.netlifyIdentity.on('init', handleLogin)
+  window.netlifyIdentity.on('login', handleLogin)
+</script>
