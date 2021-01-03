@@ -83,8 +83,12 @@
     e.preventDefault()
     const data = new FormData(e.target)
 
+    const { access_token } = window.netlifyIdentity.currentUser().token
     const result = await fetch('/.netlify/functions/add-movie', {
       method: 'POST',
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
       body: JSON.stringify({
         id: data.get('id'),
         title: data.get('title'),
